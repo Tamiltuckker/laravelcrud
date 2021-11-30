@@ -75,8 +75,9 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $getemployees = Employee::find($id);
+        $getphone = Phone::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('phone', 'id');
         $getemployees->skills = explode("," ,$getemployees->skills);
-        return view('employee.edit',compact('getemployees'));
+        return view('employee.edit',compact('getemployees','getphone'));
     }
 
     /*Update the specified resource in storage.*/
